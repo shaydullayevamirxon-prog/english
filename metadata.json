@@ -1,0 +1,6 @@
+{
+  "name": "AI English Learning & Workbook Solver",
+  "description": "1-11-sinf maktab o'quvchilari uchun interaktiv ingliz tili darsligi, Workbook sahifalari, AI Vision yechish tizimi va o'zbekcha tushuntirish platformasi.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

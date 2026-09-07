@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-handwriting {
+    font-family: 'Caveat', cursive;
+  }
+  .font-casual {
+    font-family: 'Shantell Sans', cursive;
+  }
+  .font-sans {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Vibrant Palette background and canvas */
+body {
+  background-color: #F8FAFC;
+  color: #1E293B;
+}
+
+/* Custom authentic workbook styling */
+.workbook-paper {
+  background-color: #ffffff;
+  background-image: radial-gradient(#e2e8f0 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+.workbook-ruled {
+  background-color: #ffffff;
+  background-image: repeating-linear-gradient(#ffffff, #ffffff 31px, #f1f5f9 31px, #f1f5f9 32px);
+}
