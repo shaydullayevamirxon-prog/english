@@ -1,6 +1,6 @@
 import React from 'react';
 import { GradeCurriculum, BookType, Unit, Lesson, UserProfile } from '../types';
-import { BookOpen, Edit3, ArrowLeft, CheckCircle2, Circle, Clock, Lock, Sparkles, ChevronRight } from 'lucide-react';
+import { BookOpen, Edit3, ArrowLeft, CheckCircle2, Circle, Clock, Lock, Sparkles, ChevronRight, Brain } from 'lucide-react';
 
 interface UnitLessonListProps {
   curriculum: GradeCurriculum;
@@ -9,6 +9,7 @@ interface UnitLessonListProps {
   onSelectLesson: (unit: Unit, lesson: Lesson) => void;
   onBackToBooks: () => void;
   onChangeBookType: (type: BookType) => void;
+  onOpenVocabTrainer?: (unitId?: string) => void;
 }
 
 export const UnitLessonList: React.FC<UnitLessonListProps> = ({
@@ -18,6 +19,7 @@ export const UnitLessonList: React.FC<UnitLessonListProps> = ({
   onSelectLesson,
   onBackToBooks,
   onChangeBookType,
+  onOpenVocabTrainer,
 }) => {
   const isWorkbook = bookType === 'workbook';
 
@@ -83,17 +85,32 @@ export const UnitLessonList: React.FC<UnitLessonListProps> = ({
           </p>
         </div>
 
-        <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/60 self-start md:self-auto">
-          <div className="text-center">
-            <span className="text-[10px] uppercase font-bold text-slate-400 block">Jami Unitlar</span>
-            <span className="text-lg font-bold text-slate-800">{curriculum.units.length} ta</span>
-          </div>
-          <div className="w-px h-8 bg-slate-200" />
-          <div className="text-center">
-            <span className="text-[10px] uppercase font-bold text-slate-400 block">Bajarilgan</span>
-            <span className="text-lg font-bold text-emerald-600">
-              {curriculum.units.reduce((acc, u) => acc + u.lessons.filter(l => user.completedLessons.includes(l.id)).length, 0)} ta
-            </span>
+        <div className="flex flex-wrap items-center gap-3 self-start md:self-auto">
+          {onOpenVocabTrainer && (
+            <button
+              id="btn-unit-open-vocab"
+              type="button"
+              onClick={() => onOpenVocabTrainer()}
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-md shadow-amber-500/20 transition-all cursor-pointer"
+              title="Ushbu sinf so'zlarini yodlash"
+            >
+              <Brain className="w-4 h-4" />
+              <span>🧠 So'z yodlash</span>
+            </button>
+          )}
+
+          <div className="flex items-center gap-4 bg-slate-50 p-3 rounded-2xl border border-slate-200/60">
+            <div className="text-center px-1">
+              <span className="text-[10px] uppercase font-bold text-slate-400 block">Jami Unitlar</span>
+              <span className="text-base font-bold text-slate-800">{curriculum.units.length} ta</span>
+            </div>
+            <div className="w-px h-7 bg-slate-200" />
+            <div className="text-center px-1">
+              <span className="text-[10px] uppercase font-bold text-slate-400 block">Bajarilgan</span>
+              <span className="text-base font-bold text-emerald-600">
+                {curriculum.units.reduce((acc, u) => acc + u.lessons.filter(l => user.completedLessons.includes(l.id)).length, 0)} ta
+              </span>
+            </div>
           </div>
         </div>
       </div>

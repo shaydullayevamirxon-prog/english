@@ -33,6 +33,7 @@ import { ExplanationModal } from './components/ExplanationModal';
 import { AiVisionScanner } from './components/AiVisionScanner';
 import { AdminPanel } from './components/AdminPanel';
 import { ProgressDashboard } from './components/ProgressDashboard';
+import { VocabularyTrainer } from './components/VocabularyTrainer';
 
 type ViewMode =
   | 'dashboard'
@@ -43,7 +44,8 @@ type ViewMode =
   | 'workbook_solver'
   | 'ai_vision'
   | 'admin'
-  | 'progress';
+  | 'progress'
+  | 'vocabulary';
 
 export default function App() {
   // 1. User Profile State
@@ -277,6 +279,7 @@ export default function App() {
             onSelectLesson={handleSelectLesson}
             onBackToBooks={() => setCurrentView('book_select')}
             onChangeBookType={(type) => setSelectedBookType(type)}
+            onOpenVocabTrainer={() => setCurrentView('vocabulary')}
           />
         )}
 
@@ -288,6 +291,7 @@ export default function App() {
             lesson={selectedLesson}
             onBackToLessons={() => setCurrentView('unit_lessons')}
             onFinishReading={handleFinishReading}
+            onOpenVocabTrainer={() => setCurrentView('vocabulary')}
           />
         )}
 
@@ -333,6 +337,18 @@ export default function App() {
             user={user}
             curricula={curricula}
             onBack={() => setCurrentView('dashboard')}
+          />
+        )}
+
+        {/* Vocabulary & Flashcards Trainer */}
+        {currentView === 'vocabulary' && user && (
+          <VocabularyTrainer
+            user={user}
+            curricula={curricula}
+            selectedGrade={selectedGrade}
+            initialUnitId={selectedUnit?.id}
+            onBack={() => setCurrentView('dashboard')}
+            onAddXp={handleAwardXp}
           />
         )}
       </main>

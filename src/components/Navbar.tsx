@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserProfile, GradeNumber, ReminderState } from '../types';
-import { BookOpen, Flame, Award, Camera, Shield, User, Clock, ArrowLeft } from 'lucide-react';
+import { BookOpen, Flame, Award, Camera, Shield, User, Clock, ArrowLeft, Brain } from 'lucide-react';
 
 interface NavbarProps {
   user: UserProfile;
@@ -111,11 +111,26 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Navigation Actions */}
             <div className="flex items-center gap-1.5 sm:gap-2 ml-1">
+              {/* Vocabulary Memorization Button */}
+              <button
+                id="btn-nav-vocab"
+                onClick={() => onNavigate('vocabulary')}
+                className={`p-2 sm:px-3 sm:py-1.5 rounded-xl font-semibold text-xs flex items-center gap-1.5 transition-all cursor-pointer ${
+                  currentView === 'vocabulary'
+                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200'
+                    : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-100'
+                }`}
+                title="So'z yodlash va Flashcard mashqlari"
+              >
+                <Brain className="w-4 h-4 text-amber-500" />
+                <span className="hidden sm:inline">So'z yodlash</span>
+              </button>
+
               {/* AI Vision Scanner Button */}
               <button
                 id="btn-nav-vision"
                 onClick={() => onNavigate('ai_vision')}
-                className={`p-2 sm:px-3 sm:py-1.5 rounded-xl font-semibold text-xs flex items-center gap-1.5 transition-all ${
+                className={`p-2 sm:px-3 sm:py-1.5 rounded-xl font-semibold text-xs flex items-center gap-1.5 transition-all cursor-pointer ${
                   currentView === 'ai_vision'
                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200'
                     : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-100'

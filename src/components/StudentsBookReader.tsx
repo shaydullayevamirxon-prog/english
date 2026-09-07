@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Unit, Lesson, GradeCurriculum } from '../types';
-import { BookOpen, Volume2, ArrowLeft, ArrowRight, CheckCircle2, Sparkles, MessageSquare, Lightbulb, Bookmark } from 'lucide-react';
+import { BookOpen, Volume2, ArrowLeft, ArrowRight, CheckCircle2, Sparkles, MessageSquare, Lightbulb, Bookmark, Brain } from 'lucide-react';
 
 interface StudentsBookReaderProps {
   curriculum: GradeCurriculum;
@@ -8,6 +8,7 @@ interface StudentsBookReaderProps {
   lesson: Lesson;
   onBackToLessons: () => void;
   onFinishReading: () => void;
+  onOpenVocabTrainer?: () => void;
 }
 
 export const StudentsBookReader: React.FC<StudentsBookReaderProps> = ({
@@ -16,6 +17,7 @@ export const StudentsBookReader: React.FC<StudentsBookReaderProps> = ({
   lesson,
   onBackToLessons,
   onFinishReading,
+  onOpenVocabTrainer,
 }) => {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [activeWordIndex, setActiveWordIndex] = useState<number | null>(null);
@@ -99,11 +101,24 @@ export const StudentsBookReader: React.FC<StudentsBookReaderProps> = ({
           
           {/* 1. Vocabulary Section */}
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <Bookmark className="w-5 h-5 text-indigo-600" />
-              <h2 className="text-base sm:text-lg font-bold text-slate-900">
-                1. New Words (Yangi so'zlar)
-              </h2>
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div className="flex items-center gap-2">
+                <Bookmark className="w-5 h-5 text-indigo-600" />
+                <h2 className="text-base sm:text-lg font-bold text-slate-900">
+                  1. New Words (Yangi so'zlar)
+                </h2>
+              </div>
+              {onOpenVocabTrainer && (
+                <button
+                  type="button"
+                  onClick={onOpenVocabTrainer}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-bold border border-amber-200 transition-colors cursor-pointer"
+                  title="Flashcard orqali so'zlarni yodlash"
+                >
+                  <Brain className="w-3.5 h-3.5 text-amber-600" />
+                  <span>So'z yodlash (Flashcards)</span>
+                </button>
+              )}
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">

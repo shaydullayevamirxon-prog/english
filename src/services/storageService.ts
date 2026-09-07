@@ -2,12 +2,13 @@ import { UserProfile, GradeNumber, BookType, GradeCurriculum, Badge } from '../t
 import { INITIAL_CURRICULUM } from '../data/curriculumData';
 
 const USER_STORAGE_KEY = 'ai_english_user_profile_v1';
-const CURRICULUM_STORAGE_KEY = 'ai_english_curriculum_custom_v1';
+const CURRICULUM_STORAGE_KEY = 'ai_english_curriculum_custom_v2';
 
 export const ALL_BADGES: Badge[] = [
   { id: 'first_login', name: 'New Student', nameUz: 'Yangi O\'quvchi', description: 'Platformaga muvaffaqiyatli a\'zo bo\'ldi', icon: '🌱' },
   { id: 'first_lesson', name: 'First Lesson Read', nameUz: 'Birinchi Dars', description: 'Student\'s Book darsini to\'liq o\'qib chiqdi', icon: '📖' },
   { id: 'first_workbook', name: 'Workbook Solver', nameUz: 'Mashqlar Ustasi', description: 'Workbook sahifasidagi barcha mashqlarni yechdi', icon: '✏️' },
+  { id: 'vocab_master', name: 'Word Master', nameUz: 'Lug\'at Bilimdoni', description: 'Flashcards orqali so\'zlarni muvaffaqiyatli yodladi', icon: '🧠' },
   { id: 'ai_vision_user', name: 'AI Vision Scout', nameUz: 'AI Vision Kashfiyotchisi', description: 'Kameradan yoki rasmdan varaq yuklab yechdi', icon: '📸' },
   { id: 'streak_3', name: '3-Day Fire Streak', nameUz: '3 Kunlik Qat\'iyat', description: 'Ketma-ket 3 kun dars bajardi', icon: '🔥' },
   { id: 'streak_7', name: 'Weekly Champion', nameUz: 'Haftalik Chempion', description: 'Ketma-ket 7 kunlik streak to\'pladi', icon: '⚡' },
